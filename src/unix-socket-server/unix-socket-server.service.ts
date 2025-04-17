@@ -4,8 +4,8 @@ import ipc from 'node-ipc';
 
 import {existsSync, unlinkSync} from 'fs';
 
-import {IpcTaskStorage} from '@/unix-socket-server/ipc-task-storage';
 import {CLI_UNIX_SOCKET} from '@/token';
+import {IpcTaskStorage} from '@/unix-socket-server/ipc-task-storage';
 
 @Injectable()
 export class UnixSocketServerService implements OnModuleInit, OnModuleDestroy {
@@ -73,6 +73,11 @@ export class UnixSocketServerService implements OnModuleInit, OnModuleDestroy {
         })
         .catch(error => {
           console.error(error);
+          ipc.server.emit(
+            socket,
+            'msg',
+            {result: error?.message, instanceId},
+          );
         });
 
     } catch (e) {
