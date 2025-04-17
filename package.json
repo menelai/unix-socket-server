@@ -30,7 +30,7 @@
     "@nestjs/core": "^10.2.8",
     "@nestjs/cqrs": "^10.2.7",
     "@nestjs/schematics": "^10.0.3",
-    "@stylistic/eslint-plugin": "^2.13.0",
+    "@stylistic/eslint-plugin": "^4.2.0",
     "@types/node": "^20.9.0",
     "@types/node-ipc": "^9.2.3",
     "@types/npm": "^7.19.3",
