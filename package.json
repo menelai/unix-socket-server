@@ -45,7 +45,7 @@
     "express-handlebars": "^7.1.2",
     "nanoid": "^5.1.5",
     "reflect-metadata": "^0.2.2",
-    "rimraf": "^5.0.5",
+    "rimraf": "^6.0.1",
     "rxjs": "^7.8.1",
     "ts-loader": "^9.5.0",
     "ts-node": "^10.9.1",
