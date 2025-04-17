@@ -1,0 +1,1 @@
+export const CLI_UNIX_SOCKET = 'CLI_UNIX_SOCKET';
