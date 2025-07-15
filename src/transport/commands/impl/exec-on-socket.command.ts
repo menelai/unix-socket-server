@@ -6,7 +6,9 @@ export class ExecOnSocketCommand<T extends Constructor = Constructor> {
   instanceId = nanoid();
 
   constructor(
-    public readonly command: T,
-    public readonly args: ConstructorParameters<T>,
+    readonly command: T,
+    readonly args: ConstructorParameters<T>,
+    readonly silent = false,
+    readonly end = true,
   ) {}
 }

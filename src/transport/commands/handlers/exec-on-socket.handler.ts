@@ -24,22 +24,27 @@ export class ExecOnSocketHandler<T = any> implements ICommandHandler<ExecOnSocke
       command: cmd.command.name,
       args: cmd.args,
       instanceId: cmd.instanceId,
+      silent: cmd.silent,
     });
 
-    return firstValueFrom(this.eventBus.pipe(
-      ofType(MessageFromSocketEvent),
-      filter(e => e?.data?.instanceId === cmd.instanceId),
-      map(({data}) => data.result),
-      timeout(10_000),
-      catchError(e => {
-        if (e instanceof TimeoutError) {
-          throw new Error('Response timeout');
-        }
-        return of(null);
-      }),
-      finalize(() => {
-        this.unixSocketService.end();
-      }),
-    ));
+    return firstValueFrom(
+      this.eventBus.pipe(
+        ofType(MessageFromSocketEvent),
+        filter(e => e?.data?.instanceId === cmd.instanceId),
+        map(({data}) => data.result),
+        timeout(10_000),
+        catchError(e => {
+          if (e instanceof TimeoutError) {
+            throw new Error('Response timeout');
+          }
+          return of(null);
+        }),
+        finalize(() => {
+          if (cmd.end) {
+            this.unixSocketService.end();
+          }
+        }),
+      ),
+    );
   }
 }

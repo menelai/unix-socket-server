@@ -44,7 +44,7 @@ export class UnixSocketServerService implements OnModuleInit, OnModuleDestroy {
 
   private exec = (payload: any, socket: any): void => {
     try {
-      const {command, args, instanceId}: {command: string, args: any[], instanceId: string} = payload;
+      const {command, args, instanceId, silent}: {command: string, args: any[], instanceId: string, silent: boolean} = payload;
 
       const cmd: any = IpcTaskStorage.allowedCommands.get(command);
       const query: any = IpcTaskStorage.allowedQueries.get(command);
@@ -61,7 +61,9 @@ export class UnixSocketServerService implements OnModuleInit, OnModuleDestroy {
         console.log(arg);
       }
 
-      console.log(`Executing command ${command} via unix socket api`, args);
+      if (!silent) {
+        console.log(`Executing command ${command} via unix socket api`, args);
+      }
 
       bus.execute(arg)
         .then(result => {
