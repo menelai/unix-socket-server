@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/menelai/unix-socket-server/compare/v1.0.1...v1.1.0) (2025-07-15)
+
+
+### Features
+
+* silent and end options ([933bb93](https://github.com/menelai/unix-socket-server/commit/933bb935721757b45c930f7b8eda9781ca3bb649))
+
 ## [1.0.1](https://github.com/menelai/unix-socket-server/compare/v1.0.0...v1.0.1) (2025-04-17)
 
 
